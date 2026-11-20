@@ -122,6 +122,9 @@ begin
 end;
 $$;
 
+revoke all on function public.create_client_with_project(
+  text,text,text,text,text,text,text,date,time,date,time,numeric,numeric
+) from public;
 grant execute on function public.create_client_with_project(
   text,text,text,text,text,text,text,date,time,date,time,numeric,numeric
 ) to authenticated;
