@@ -52,9 +52,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--lime)}textarea{min-he
 <script>
 // Configure only with the NEW dedicated Atelier-Ahmed Supabase project.
 // Never place a database password, service-role key, or secret key in this file.
-const SB_URL='YOUR_SUPABASE_PROJECT_URL';
-const SB_KEY='YOUR_SUPABASE_PUBLISHABLE_KEY';
-const CONFIGURED=false;
+const SB_URL='https://bdcgiiwnrgypalvlyxdg.supabase.co';
+const SB_KEY='sb_publishable_AOG7SJ6klN34plpfU08e1Q_9BH_XUmB';
+const CONFIGURED=true;
 const db=CONFIGURED?supabase.createClient(SB_URL,SB_KEY):null;
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
