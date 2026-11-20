@@ -168,7 +168,11 @@ as $
 declare v_project_id uuid;
 begin
   if not public.can_write() then raise exception 'Accès non autorisé.'; end if;
-  if not exists(select 1 from public.clients where id=p_client_id and is_active=false) then
+  -- Serialize conversions for this contact to prevent duplicate projects.
+  perform 1 from public.clients
+  where id=p_client_id and is_active=false
+  for update;
+  if not found then
     raise exception 'Ce contact a déjà été converti ou est introuvable.';
   end if;
   if nullif(trim(coalesce(p_service,'')),'') is null then raise exception 'Le type de travail est obligatoire.'; end if;
