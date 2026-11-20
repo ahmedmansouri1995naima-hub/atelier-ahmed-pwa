@@ -87,7 +87,7 @@ begin
     raise exception 'Vérifiez le prix total et l’acompte.';
   end if;
 
-  insert into public.clients(name, phone, address, email, source, notes)
+  insert into public.clients as new_client(name, phone, address, email, source, notes)
   values (
     trim(p_name),
     nullif(trim(coalesce(p_phone, '')), ''),
@@ -96,7 +96,7 @@ begin
     nullif(trim(coalesce(p_source, '')), ''),
     nullif(trim(coalesce(p_internal_notes, '')), '')
   )
-  returning id, public.clients.client_number
+  returning new_client.id, new_client.client_number
   into v_client_id, v_client_number;
 
   insert into public.projects(
