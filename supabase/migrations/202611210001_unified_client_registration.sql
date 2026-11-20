@@ -139,7 +139,7 @@ create or replace function public.create_contact_with_appointment(
 returns table(client_id uuid, appointment_id uuid, client_number bigint)
 language plpgsql
 set search_path = ''
-as $
+as $$
 declare v_client_id uuid; v_appointment_id uuid; v_client_number bigint;
 begin
   if not public.can_write() then raise exception 'Accès non autorisé.'; end if;
@@ -153,7 +153,7 @@ begin
   returning id into v_appointment_id;
   return query select v_client_id,v_appointment_id,v_client_number;
 end;
-$;
+$$;
 
 create or replace function public.convert_contact_to_project(
   p_client_id uuid, p_service text,
@@ -164,7 +164,7 @@ create or replace function public.convert_contact_to_project(
 returns uuid
 language plpgsql
 set search_path = ''
-as $
+as $$
 declare v_project_id uuid;
 begin
   if not public.can_write() then raise exception 'Accès non autorisé.'; end if;
@@ -191,7 +191,7 @@ begin
   returning id into v_project_id;
   return v_project_id;
 end;
-$;
+$$;
 
 revoke all on function public.create_contact_with_appointment(text,text,text,date,time,text) from public;
 grant execute on function public.create_contact_with_appointment(text,text,text,date,time,text) to authenticated;
