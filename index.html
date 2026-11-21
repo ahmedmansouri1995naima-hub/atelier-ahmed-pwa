@@ -100,6 +100,44 @@ input::placeholder,textarea::placeholder{color:#a99c86}input:focus,select:focus,
  #paper .client-print-section,#paper .client-print-balance,#paper .client-print-signatures{break-inside:avoid}
 }
 @media(max-width:600px){.client-print{padding:24px 16px}.client-print-head{align-items:flex-start}.client-print-brand{font-size:15px}.client-print-sub{font-size:10px}.client-print-number{font-size:12px;padding:7px 9px}.client-print h1{font-size:34px}.client-print-title p{font-size:14px}.client-print-section h2{font-size:18px}.client-print td{font-size:15px;padding:10px 9px}.client-print-balance{font-size:14px;padding:13px}.client-print-balance strong{font-size:19px}.client-print-signatures{gap:20px}.client-print-signatures div{font-size:13px}}@media(max-width:600px){.client-print{padding:22px 16px}.client-print-head{align-items:flex-start}.client-print-brand{font-size:14px}.client-print-number{font-size:11px;padding:7px}.client-print h1{font-size:29px}.client-print td{font-size:14px;padding:10px 9px}.client-print-section h2{font-size:17px}.client-print-balance{font-size:14px}.client-print-balance strong{font-size:17px}.client-print-signatures{gap:20px}}
+
+/* Dashboard redesign */
+.dash-welcome{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:30px}
+.dash-welcome .page-title{margin-top:7px}
+.dash-actions{display:flex;gap:9px;flex-wrap:wrap}
+.dash-section{margin:0 0 22px}
+.dash-section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:13px}
+.dash-section-head h2{font-size:20px;margin:5px 0 0}
+.dash-note{font-size:11px;color:var(--muted);padding:7px 11px;border:1px solid var(--line);border-radius:999px}
+.dash-finance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.dash-money{min-width:0;padding:20px 21px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#463b2d,#332d25);box-shadow:0 8px 24px #120e091f}
+.dash-money span{display:block;color:var(--muted);font-size:13px;margin-bottom:13px}
+.dash-money strong{display:block;font-size:clamp(19px,2.3vw,27px);letter-spacing:-.04em;overflow-wrap:anywhere}
+.dash-money small{display:block;color:#bcae98;font-size:11px;margin-top:9px}
+.dash-money-due{border-color:#a77a35;background:linear-gradient(145deg,#51402b,#362d22)}
+.dash-money-due strong{color:var(--yellow)}
+.dash-activity{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 24px}
+.dash-count{display:flex;align-items:center;gap:12px;min-width:0;padding:15px;background:#332e27;border:1px solid var(--line);border-radius:15px}
+.dash-count-icon{width:37px;height:37px;display:grid;place-items:center;flex:none;border-radius:11px;background:#51432f;color:var(--yellow);font-size:11px;font-weight:900}
+.dash-count>div:nth-child(2){min-width:0;flex:1}
+.dash-count strong{display:block;font-size:23px;line-height:1.1}
+.dash-count span{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.dash-count button{border:0;background:none;color:var(--yellow);font-size:11px;font-weight:800;padding:5px}
+.dash-columns{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.dash-panel{min-width:0;margin:0;padding:19px}
+.dash-panel .panel-head{align-items:center}
+.dash-panel .panel-head h2{margin-top:4px}
+.dash-appointment{display:flex;align-items:center;gap:13px;padding:13px 0;border-top:1px solid var(--line)}
+.dash-date{width:48px;height:48px;display:grid;align-content:center;justify-items:center;flex:none;border-radius:12px;background:#51412c}
+.dash-date strong{font-size:20px;color:var(--yellow);line-height:1}
+.dash-date span{font-size:10px;color:var(--muted);margin-top:4px}
+.dash-appointment-info{min-width:0}
+.dash-appointment-info strong,.dash-recent-row strong{display:block;font-size:13px;overflow-wrap:anywhere}
+.dash-appointment-info small,.dash-recent-row small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.dash-recent-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--line)}
+.dash-recent-row>div{min-width:0}
+@media(max-width:800px){.dash-finance{grid-template-columns:1fr 1fr}.dash-money:last-child{grid-column:1/-1}.dash-columns{grid-template-columns:1fr}}
+@media(max-width:520px){.dash-welcome{display:block;margin-bottom:22px}.dash-actions{margin-top:15px}.dash-actions .btn{flex:1;padding:10px 11px;font-size:12px}.dash-section-head h2{font-size:17px}.dash-finance{grid-template-columns:1fr 1fr;gap:9px}.dash-money{padding:15px 13px}.dash-money:last-child{grid-column:1/-1}.dash-money span{font-size:11px;margin-bottom:9px}.dash-money strong{font-size:18px}.dash-activity{grid-template-columns:1fr;gap:8px}.dash-count{padding:12px}.dash-panel{padding:14px}.dash-panel .panel-head{align-items:flex-start}.dash-panel .panel-head .btn{font-size:10px;padding:8px 9px}}
 </style>
 </head>
 <body>
@@ -157,7 +195,29 @@ function tvScreen(){
 function render(){ if(role==='tv'){ $('#app').innerHTML=tvScreen();$('#logout').onclick=async()=>{await db.auth.signOut();location.reload()};const fs=$('#fullscreen');if(fs)fs.onclick=async()=>{try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen()}catch(e){toast('Le plein écran doit être autorisé par le navigateur.')}};return;} $('#app').innerHTML=shell();$('#logout').onclick=async()=>{await db.auth.signOut();location.reload()};document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{active=b.dataset.tab;query='';render()});view();}
 function view(){const el=$('#view');if(active==='dashboard')el.innerHTML=dashboard();if(active==='clients')el.innerHTML=clientsView();if(active==='appointments')el.innerHTML=appointmentsView();if(active==='projects')el.innerHTML=projectsView();wire();}
 function projectBalance(p){return Math.max(0,Number(p.final_price||0)-Number(p.deposit||0))}
-function dashboard(){const due=projects.filter(p=>p.status!=='delivered').length,total=projects.reduce((n,p)=>n+Number(p.final_price||0),0),advances=projects.reduce((n,p)=>n+Number(p.deposit||0),0),unpaid=projects.reduce((n,p)=>n+projectBalance(p),0);return '<div class="grid"><div class="stat"><small>Clients enregistrés</small><strong>'+clients.length+'</strong><em>CLIENTS</em></div><div class="stat"><small>Projets en cours</small><strong>'+due+'</strong><em>ATELIER</em></div><div class="stat"><small>Rendez-vous à venir</small><strong>'+appointments.filter(a=>a.appointment_date>=localISODate()).length+'</strong><em>AGENDA</em></div><div class="stat"><small>Total des commandes</small><strong style="font-size:20px">'+amount(total)+'</strong><em>TOUS LES PROJETS</em></div><div class="stat"><small>Avances reçues</small><strong style="font-size:20px">'+amount(advances)+'</strong><em>ACOMPTES</em></div><div class="stat"><small>Reste à encaisser</small><strong style="font-size:20px">'+amount(unpaid)+'</strong><em>SOLDE CLIENTS</em></div></div><div class="panel"><div class="panel-head"><h2>Derniers projets</h2><button class="btn" data-go="projects">Voir les projets</button></div>'+projects.slice(0,4).map(projectCard).join('')+(projects.length?'':'<div class="empty">Aucun projet enregistré pour le moment.</div>')+'</div>'}
+function dashboard(){
+ const total=projects.reduce((n,p)=>n+Number(p.final_price||0),0);
+ const advances=projects.reduce((n,p)=>n+Number(p.deposit||0),0);
+ const unpaid=projects.reduce((n,p)=>n+projectBalance(p),0);
+ const active=projects.filter(p=>p.status!=='delivered');
+ const today=localISODate();
+ const upcoming=appointments.filter(a=>a.appointment_date>=today).sort((a,b)=>(a.appointment_date||'').localeCompare(b.appointment_date||'')).slice(0,3);
+ const recent=projects.slice(0,3);
+ return '<section class="dash-welcome"><div><div class="eyebrow">VOTRE ATELIER EN UN COUP D’ŒIL</div><h1 class="page-title">Tableau de bord</h1><p class="sub">Suivez l’activité, les rendez-vous et les encaissements de votre atelier.</p></div><div class="dash-actions"><button class="btn primary" data-go="clients">＋ Nouveau client</button><button class="btn" data-go="projects">Voir les projets</button></div></section>'+
+ '<section class="dash-section"><div class="dash-section-head"><div><div class="eyebrow">SUIVI FINANCIER</div><h2>Situation des paiements</h2></div><span class="dash-note">Tous les projets</span></div><div class="dash-finance">'+
+ '<article class="dash-money"><span>Total des commandes</span><strong>'+amount(total)+'</strong><small>Montant convenu</small></article>'+
+ '<article class="dash-money"><span>Avances reçues</span><strong>'+amount(advances)+'</strong><small>Acomptes enregistrés</small></article>'+
+ '<article class="dash-money dash-money-due"><span>Reste à encaisser</span><strong>'+amount(unpaid)+'</strong><small>Solde des clients</small></article>'+
+ '</div></section>'+
+ '<section class="dash-activity"><article class="dash-count"><div class="dash-count-icon">01</div><div><strong>'+clients.length+'</strong><span>Clients enregistrés</span></div><button data-go="clients" aria-label="Voir les clients">Voir →</button></article>'+
+ '<article class="dash-count"><div class="dash-count-icon">02</div><div><strong>'+active.length+'</strong><span>Projets en cours</span></div><button data-go="projects" aria-label="Voir les projets">Voir →</button></article>'+
+ '<article class="dash-count"><div class="dash-count-icon">03</div><div><strong>'+appointments.filter(a=>a.appointment_date>=today).length+'</strong><span>Rendez-vous à venir</span></div><button data-go="appointments" aria-label="Voir les rendez-vous">Voir →</button></article></section>'+
+ '<section class="dash-columns"><div class="panel dash-panel"><div class="panel-head"><div><div class="eyebrow">À NE PAS MANQUER</div><h2>Prochains rendez-vous</h2></div><button class="btn" data-go="appointments">Agenda complet</button></div>'+
+ (upcoming.length?upcoming.map(a=>'<div class="dash-appointment"><div class="dash-date"><strong>'+esc((a.appointment_date||'').slice(8,10))+'</strong><span>'+esc((a.appointment_date||'').slice(5,7))+'</span></div><div class="dash-appointment-info"><strong>'+esc(clientName(a.client_id))+'</strong><small>'+esc(a.appointment_time||'Heure à définir')+'</small></div></div>').join(''):'<div class="empty">Aucun rendez-vous à venir.</div>')+
+ '</div><div class="panel dash-panel"><div class="panel-head"><div><div class="eyebrow">SUIVI DE PRODUCTION</div><h2>Projets récents</h2></div><button class="btn" data-go="projects">Tout voir</button></div>'+
+ (recent.length?'<div class="dash-recent">'+recent.map(p=>'<div class="dash-recent-row"><div><strong>'+esc(clientName(p.client_id))+'</strong><small>'+esc(p.service||'Travail non précisé')+'</small></div><span class="tag">'+esc(statusLabels[p.status]||p.status)+'</span></div>').join('')+'</div>':'<div class="empty">Aucun projet enregistré.</div>')+
+ '</div></section>';
+}
 function clientsView(){
  return '<div class="panel"><div class="panel-head"><h2>Ajouter client</h2><span class="tag">FICHE CLIENT</span></div>'+
  '<form id="unified-client-form" class="form-grid">'+
