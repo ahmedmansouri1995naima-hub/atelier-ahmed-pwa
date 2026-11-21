@@ -252,6 +252,7 @@ function clientsView(){
  '<div class="field"><label>Adresse</label><input name="address"></div>'+
  '<div class="field"><label>E-mail</label><input name="email" type="email"></div>'+
  '<div class="field"><label>Source du client</label><input type="hidden" name="source" value=""><div class="source-choices" role="group" aria-label="Source du client"><button type="button" class="source-choice" data-source-choice="Facebook">Facebook</button><button type="button" class="source-choice" data-source-choice="WhatsApp">WhatsApp</button><button type="button" class="source-choice" data-source-choice="Google">Google</button><button type="button" class="source-choice" data-source-choice="Passage">Passage</button></div><small class="muted">Choisissez comment le client a connu l’atelier.</small></div>'+
+ '<div class="field full"><label>Statut du client *</label><select name="client_status" required><option value="new">Nouveau client</option><option value="appointment">Rendez-vous</option><option value="progress">En cours</option><option value="done">Terminé</option><option value="delivered">Livré</option></select><small class="muted">Choisissez où le client doit apparaître. La date de récupération est la date du rendez-vous et le début du projet.</small></div>'+
  '<div class="field"><label>Type d’accueil *</label><select name="reception_type"><option value="rendez_vous">Rendez-vous</option><option value="direct">Client direct</option></select></div>'+
  '<div class="field"><label>Travail demandé *</label><input name="service" required placeholder="Ex. Réfection d’un salon"></div>'+
  '<div class="field"><label>Date de récupération du salon *</label><input name="collection_date" type="date" required></div>'+
@@ -294,14 +295,24 @@ function wire(){
    const {data,error}=await db.from('clients').insert({name:f.name,phone:f.phone||null,address:f.address||null,email:f.email||null,source:f.source||null}).select('id').single();
    if(error)return toast('Erreur client : '+error.message);clientId=data.id;
   }
-  const {error:projectError}=await db.from('projects').insert({
-   client_id:clientId,service:f.service,start_date:f.collection_date,due_date:f.ready_date,
-   collection_date:f.collection_date,collection_time:f.collection_time||null,
-   ready_date:f.ready_date,ready_time:f.ready_time||null,
-   reception_type:f.reception_type,final_price:price,deposit:deposit,status:'pending',notes:f.notes||null
-  });
-  if(projectError)return toast('Le client est enregistré, mais le dossier n’a pas été créé : '+projectError.message);
-  toast('Client et dossier enregistrés');query='';await reload();view();
+  if(f.client_status==='appointment'){
+   const {error:appointmentError}=await db.from('appointments').insert({client_id:clientId,appointment_date:f.collection_date,appointment_time:f.collection_time||null,estimated_amount:price,notes:f.notes||null});
+   if(appointmentError)return toast('Client enregistré, mais le rendez-vous n’a pas été créé : '+appointmentError.message);
+   toast('Client ajouté à la liste des rendez-vous.');
+  }else if(f.client_status==='new'){
+   toast('Nouveau client enregistré dans la liste des clients.');
+  }else{
+   const projectStatus={progress:'progress',done:'done',delivered:'delivered'}[f.client_status]||'pending';
+   const {error:projectError}=await db.from('projects').insert({
+    client_id:clientId,service:f.service,start_date:f.collection_date,due_date:f.ready_date,
+    collection_date:f.collection_date,collection_time:f.collection_time||null,
+    ready_date:f.ready_date,ready_time:f.ready_time||null,
+    reception_type:f.reception_type,final_price:price,deposit:deposit,status:projectStatus,notes:f.notes||null
+   });
+   if(projectError)return toast('Le client est enregistré, mais le dossier n’a pas été créé : '+projectError.message);
+   toast('Client et projet enregistrés : '+({progress:'En cours',done:'Terminé',delivered:'Livré'}[f.client_status]||'En attente'));
+  }
+  query='';await reload();view();
  };
 const search=$('#search');if(search)search.oninput=()=>{query=search.value;const pos=search.selectionStart;view();const n=$('#search');n.focus();n.setSelectionRange(pos,pos)};
 const statusSelect=$('#status-filter');if(statusSelect)statusSelect.onchange=()=>{statusFilter=statusSelect.value;view()};
