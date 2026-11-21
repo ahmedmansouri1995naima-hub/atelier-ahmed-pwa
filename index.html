@@ -53,44 +53,53 @@ input::placeholder,textarea::placeholder{color:#a99c86}input:focus,select:focus,
 @media(max-width:800px){.tv-main{grid-template-columns:1fr;margin:5vh auto}.tv-welcome h1{font-size:48px}.tv-clock{display:none}.tv-count{margin-top:20px}.tv-footer{margin-top:30px}}
 @media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.list{grid-template-columns:1fr}}
 @media(max-width:520px){header{height:62px}.brand{font-size:12px}.mark{width:33px;height:33px}main{padding-top:24px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel{padding:15px}.stat{padding:14px}.stat strong{font-size:22px}.header-actions .muted{display:none}}
-.client-print{max-width:820px;margin:0 auto;padding:34px 38px;background:#fff;color:#202020;font:17px/1.5 Arial,Helvetica,sans-serif}
-.client-print-head{display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:4px solid #e9b95a;padding:0 0 20px}
-.client-print-brand{font-size:17px;font-weight:800;letter-spacing:3px;color:#8d671d}
-.client-print-sub{font-size:11px;letter-spacing:1.4px;color:#777;margin-top:5px}
-.client-print-number{border:1.5px solid #e9b95a;border-radius:8px;padding:9px 13px;font-size:14px;font-weight:800;white-space:nowrap;color:#765516}
-.client-print h1{font-size:34px;line-height:1.15;margin:24px 0 5px;letter-spacing:-.6px}
-.client-print-intro{font-size:15px;color:#666;margin:0 0 24px}
-.client-print-section{margin:22px 0}
-.client-print-section h2{font-size:19px;margin:0 0 10px;color:#27231d}
+.client-print{max-width:820px;margin:0 auto;padding:42px 46px;background:#fff;color:#24211c;font:19px/1.55 Arial,Helvetica,sans-serif}
+.client-print-head{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:5px solid #e9b95a;padding:0 0 22px}
+.client-print-brand{font-size:20px;font-weight:900;letter-spacing:3px;color:#8d671d}
+.client-print-sub{font-size:13px;letter-spacing:1.5px;color:#777;margin-top:7px}
+.client-print-number{border:2px solid #e9b95a;border-radius:9px;padding:11px 16px;font-size:17px;font-weight:900;white-space:nowrap;color:#765516}
+.client-print-title{padding:25px 0 8px}
+.client-print-kicker{font-size:13px;font-weight:800;letter-spacing:2.5px;color:#a47a28}
+.client-print h1{font-size:42px;line-height:1.08;margin:8px 0;letter-spacing:-1px;color:#211f1b}
+.client-print-title p{font-size:17px;color:#68635b;margin:8px 0 20px}
+.client-print-section{margin:23px 0}
+.client-print-section h2{font-size:22px;margin:0 0 12px;color:#29251f;display:flex;align-items:center;gap:10px}
+.client-print-section h2 span{font-size:14px;color:#a47a28;letter-spacing:1px}
 .client-print table{width:100%;border-collapse:collapse;table-layout:fixed}
-.client-print td{border:1px solid #d7d2c8;padding:12px 14px;font-size:16px;line-height:1.4;overflow-wrap:anywhere}
-.client-print td:first-child{width:42%;font-weight:700;background:#faf7f0;color:#4b4438}
-.client-print-balance{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:25px 0 0;padding:16px 18px;background:#fff8e8;border:1.5px solid #e9b95a;border-radius:8px;font-size:17px;font-weight:700}
-.client-print-balance strong{font-size:21px;color:#805c16;white-space:nowrap}
-.client-print-signatures{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px}
-.client-print-signatures div{font-size:14px;font-weight:700;color:#444}
-.client-print-signatures i{display:block;height:44px;border-bottom:1px solid #aaa;margin-top:8px}
-.client-print-footer{text-align:center;color:#8d671d;font-size:13px;font-weight:700;margin-top:24px;letter-spacing:.4px}
-@page{size:A4;margin:13mm}
+.client-print td{border:1px solid #d8d1c3;padding:14px 16px;font-size:18px;line-height:1.45;overflow-wrap:anywhere}
+.client-print td:first-child{width:42%;font-weight:700;background:#faf7f0;color:#51483a}
+.client-print-balance{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:28px 0 0;padding:19px 22px;background:#fff7e5;border:2px solid #e9b95a;border-radius:10px;font-size:18px;font-weight:900;letter-spacing:.8px}
+.client-print-balance strong{font-size:25px;color:#805c16;white-space:nowrap}
+.client-print-signatures{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px}
+.client-print-signatures div{font-size:16px;font-weight:700;color:#45413a}
+.client-print-signatures i{display:block;height:42px;border-bottom:1px solid #aaa;margin-top:8px}
+.client-print-footer{text-align:center;color:#8d671d;font-size:15px;font-weight:700;margin-top:26px;letter-spacing:.5px}
+@page{size:A4;margin:10mm}
 @media print{
  html,body{background:#fff!important;color:#111!important;min-height:0!important}
  body *{visibility:hidden!important}
  #paper,#paper *{visibility:visible!important}
- #paper{display:block!important;position:absolute!important;inset:0 auto auto 0!important;width:100%!important;color:#111!important;background:#fff!important;padding:0!important;font:14pt Arial,Helvetica,sans-serif!important}
- #paper .client-print{max-width:none;padding:0;font-size:14pt}
- #paper .client-print-brand{font-size:15pt}
- #paper .client-print h1{font-size:27pt}
- #paper .client-print-intro{font-size:13pt}
- #paper .client-print-section h2{font-size:16pt}
- #paper .client-print td{font-size:13pt;padding:10px 12px}
- #paper .client-print-balance{font-size:14pt}
- #paper .client-print-balance strong{font-size:17pt}
- #paper .client-print-signatures{margin-top:38px}
+ #paper{display:block!important;position:absolute!important;inset:0 auto auto 0!important;width:100%!important;color:#111!important;background:#fff!important;padding:0!important;font:16pt Arial,Helvetica,sans-serif!important}
+ #paper .client-print{max-width:none;padding:0;font-size:16pt;line-height:1.45}
+ #paper .client-print-brand{font-size:16pt}
+ #paper .client-print-sub{font-size:10pt}
+ #paper .client-print-number{font-size:13pt}
+ #paper .client-print-kicker{font-size:10pt}
+ #paper .client-print h1{font-size:31pt}
+ #paper .client-print-title p{font-size:12pt}
+ #paper .client-print-section{margin:17px 0}
+ #paper .client-print-section h2{font-size:17pt}
+ #paper .client-print-section h2 span{font-size:11pt}
+ #paper .client-print td{font-size:14pt;padding:10px 12px}
+ #paper .client-print-balance{font-size:14pt;padding:13px 16px;margin-top:18px}
+ #paper .client-print-balance strong{font-size:19pt}
+ #paper .client-print-signatures{margin-top:30px;gap:35px}
  #paper .client-print-signatures div{font-size:12pt}
- #paper .client-print-footer{font-size:11pt}
+ #paper .client-print-signatures i{height:32px}
+ #paper .client-print-footer{font-size:11pt;margin-top:18px}
  #paper .client-print-section,#paper .client-print-balance,#paper .client-print-signatures{break-inside:avoid}
 }
-@media(max-width:600px){.client-print{padding:22px 16px}.client-print-head{align-items:flex-start}.client-print-brand{font-size:14px}.client-print-number{font-size:11px;padding:7px}.client-print h1{font-size:29px}.client-print td{font-size:14px;padding:10px 9px}.client-print-section h2{font-size:17px}.client-print-balance{font-size:14px}.client-print-balance strong{font-size:17px}.client-print-signatures{gap:20px}}
+@media(max-width:600px){.client-print{padding:24px 16px}.client-print-head{align-items:flex-start}.client-print-brand{font-size:15px}.client-print-sub{font-size:10px}.client-print-number{font-size:12px;padding:7px 9px}.client-print h1{font-size:34px}.client-print-title p{font-size:14px}.client-print-section h2{font-size:18px}.client-print td{font-size:15px;padding:10px 9px}.client-print-balance{font-size:14px;padding:13px}.client-print-balance strong{font-size:19px}.client-print-signatures{gap:20px}.client-print-signatures div{font-size:13px}}@media(max-width:600px){.client-print{padding:22px 16px}.client-print-head{align-items:flex-start}.client-print-brand{font-size:14px}.client-print-number{font-size:11px;padding:7px}.client-print h1{font-size:29px}.client-print td{font-size:14px;padding:10px 9px}.client-print-section h2{font-size:17px}.client-print-balance{font-size:14px}.client-print-balance strong{font-size:17px}.client-print-signatures{gap:20px}}
 </style>
 </head>
 <body>
@@ -180,7 +189,7 @@ function projectsView(){
  return '<div class="toolbar"><input id="search" placeholder="Rechercher un dossier..." value="'+esc(query)+'"><select id="status-filter"><option value="">Tous les statuts</option>'+Object.entries(statusLabels).map(([k,v])=>'<option value="'+k+'">'+v+'</option>').join('')+'</select></div>'+
  '<div id="project-list" class="list">'+projects.filter(p=>(!statusFilter||p.status===statusFilter)&&(clientName(p.client_id)+" "+(p.service||"")).toLocaleLowerCase().includes(query.toLocaleLowerCase())).map(projectCard).join("")+(projects.length?"":'<div class="empty">Aucun dossier enregistré.</div>')+'</div>';
 }
-function projectCard(p){return '<article class="item"><div class="item-top"><h3>'+esc(clientName(p.client_id))+'</h3><span class="tag">'+esc(statusLabels[p.status]||p.status)+'</span></div><p>'+esc(p.service||'Service non précisé')+'</p><p>Réception : '+date(p.start_date)+' · Livraison prévue : '+date(p.due_date)+'</p><p>Prix : '+amount(p.final_price)+' · Acompte : '+amount(p.deposit)+' · Solde : '+amount(Number(p.final_price)-Number(p.deposit))+'</p><div class="item-actions"><select data-status="'+p.id+'" aria-label="Statut du projet">'+Object.entries(statusLabels).map(([k,v])=>'<option value="'+k+'" '+(p.status===k?'selected':'')+'>'+v+'</option>').join('')+'</select><button class="btn gold" data-print-project="'+p.id+'">Fiche atelier</button><button class="btn gold" data-print-client="'+p.id+'">Fiche client PDF</button><button class="btn" data-details="'+p.id+'">Mesures & photos</button></div><div id="details-'+p.id+'" class="panel hidden" style="margin-top:14px"><div class="muted">Chargement des détails…</div></div></article>'}
+function projectCard(p){return '<article class="item"><div class="item-top"><h3>'+esc(clientName(p.client_id))+'</h3><span class="tag">'+esc(statusLabels[p.status]||p.status)+'</span></div><p>'+esc(p.service||'Service non précisé')+'</p><p>Réception : '+date(p.start_date)+' · Livraison prévue : '+date(p.due_date)+'</p><p>Prix : '+amount(p.final_price)+' · Acompte : '+amount(p.deposit)+' · Solde : '+amount(Number(p.final_price)-Number(p.deposit))+'</p><div class="item-actions"><select data-status="'+p.id+'" aria-label="Statut du projet">'+Object.entries(statusLabels).map(([k,v])=>'<option value="'+k+'" '+(p.status===k?'selected':'')+'>'+v+'</option>').join('')+'</select><button class="btn gold" data-print-project="'+p.id+'">Fiche atelier</button><button class="btn gold" data-print-client="'+p.id+'">Rendez-vous PDF</button><button class="btn" data-details="'+p.id+'">Mesures & photos</button></div><div id="details-'+p.id+'" class="panel hidden" style="margin-top:14px"><div class="muted">Chargement des détails…</div></div></article>'}
 function wire(){
  const uf=$('#unified-client-form');
  if(uf){const existing=uf.querySelector('[name="existing_client_id"]');existing.onchange=()=>{const c=clients.find(x=>x.id===existing.value);if(!c)return;uf.elements.name.value=c.name||'';uf.elements.phone.value=c.phone||'';uf.elements.address.value=c.address||'';uf.elements.email.value=c.email||'';};}
@@ -234,14 +243,14 @@ function printClientFiche(id){
  const balance=Math.max(0,Number(p.final_price||0)-Number(p.deposit||0));
  const timeValue=v=>v?String(v).slice(0,5):'À préciser';
  $('#paper').innerHTML='<article class="client-print">'+
- '<header class="client-print-head"><div><div class="client-print-brand">AHMED TAPISSERIE</div><div class="client-print-sub">ATELIER DE TAPISSERIE · FICHE CLIENT</div></div><div class="client-print-number">CLIENT N° '+String(c.client_number||'—').padStart(3,'0')+'</div></header>'+
- '<h1>Fiche client</h1><p class="client-print-intro">Récapitulatif de votre commande et de son planning</p>'+
- '<section class="client-print-section"><h2>Informations client</h2><table><tbody>'+printRows([['Nom et prénom',esc(c.name)],['Téléphone',esc(c.phone||'—')],['Adresse',esc(c.address||'—')]])+'</tbody></table></section>'+
- '<section class="client-print-section"><h2>Planning du salon</h2><table><tbody>'+printRows([['Récupération du salon',date(p.collection_date||p.start_date)+' · '+timeValue(p.collection_time)],['Salon disponible',date(p.ready_date||p.due_date)+' · '+timeValue(p.ready_time)]])+'</tbody></table></section>'+
- '<section class="client-print-section"><h2>Informations financières</h2><table><tbody>'+printRows([['Travail demandé',esc(p.service||'—')],['Prix convenu',amount(p.final_price)],['Avance / acompte',amount(p.deposit)],['Reste à payer',amount(balance)]])+'</tbody></table></section>'+
- '<div class="client-print-balance"><span>Solde restant à payer</span><strong>'+amount(balance)+'</strong></div>'+
- '<div class="client-print-signatures"><div><span>Signature du client</span><i></i></div><div><span>Ahmed Tapisserie</span><i></i></div></div>'+
- '<footer class="client-print-footer">Merci pour votre confiance.</footer></article>';
+ '<header class="client-print-head"><div><div class="client-print-brand">AHMED TAPISSERIE</div><div class="client-print-sub">ATELIER DE TAPISSERIE · DOCUMENT CLIENT</div></div><div class="client-print-number">N° '+String(c.client_number||'—').padStart(3,'0')+'</div></header>'+
+ '<div class="client-print-title"><div class="client-print-kicker">VOTRE COMMANDE</div><h1>Rendez-vous</h1><p>Confirmation des dates, du travail demandé et des conditions convenues</p></div>'+
+ '<section class="client-print-section"><h2><span>01</span> Informations du client</h2><table><tbody>'+printRows([['Nom et prénom',esc(c.name)],['Téléphone',esc(c.phone||'—')],['Adresse',esc(c.address||'—')]])+'</tbody></table></section>'+
+ '<section class="client-print-section"><h2><span>02</span> Dates importantes</h2><table><tbody>'+printRows([['Récupération du salon',date(p.collection_date||p.start_date)+' · '+timeValue(p.collection_time)],['Salon prêt à récupérer',date(p.ready_date||p.due_date)+' · '+timeValue(p.ready_time)]])+'</tbody></table></section>'+
+ '<section class="client-print-section"><h2><span>03</span> Détails et règlement</h2><table><tbody>'+printRows([['Travail demandé',esc(p.service||'—')],['Prix convenu',amount(p.final_price)],['Avance versée',amount(p.deposit)],['Reste à payer',amount(balance)]])+'</tbody></table></section>'+
+ '<div class="client-print-balance"><span>RESTE À PAYER</span><strong>'+amount(balance)+'</strong></div>'+
+ '<div class="client-print-signatures"><div><span>Signature du client</span><i></i></div><div><span>Signature de l’atelier</span><i></i></div></div>'+
+ '<footer class="client-print-footer">Merci de votre confiance · Ahmed Tapisserie</footer></article>';
  runPrint();
 }
 function printProject(id){const p=projects.find(x=>x.id===id);if(!p)return;$('#paper').innerHTML='<div class="eyebrow">AHMED TAPISSERIE</div><h1>Fiche atelier</h1><p>Document interne de suivi</p><table>'+printRows([['Client',esc(clientName(p.client_id))],['Service',esc(p.service)],['Statut',esc(statusLabels[p.status]||p.status)],['Récupération',date(p.collection_date||p.start_date)],['Disponibilité',date(p.ready_date||p.due_date)],['Notes internes',esc(p.notes||'—') ]])+'</table><div class="sign"><span>Suivi atelier</span><span>Ahmed Tapisserie</span></div>';runPrint()}
