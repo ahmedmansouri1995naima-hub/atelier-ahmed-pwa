@@ -138,7 +138,7 @@ input::placeholder,textarea::placeholder{color:#a99c86}input:focus,select:focus,
 .dash-recent-row>div{min-width:0}
 @media(max-width:800px){.dash-finance{grid-template-columns:1fr 1fr}.dash-money:last-child{grid-column:1/-1}.dash-columns{grid-template-columns:1fr}}
 @media(max-width:520px){.dash-welcome{display:block;margin-bottom:22px}.dash-actions{margin-top:15px}.dash-actions .btn{flex:1;padding:10px 11px;font-size:12px}.dash-section-head h2{font-size:17px}.dash-finance{grid-template-columns:1fr 1fr;gap:9px}.dash-money{padding:15px 13px}.dash-money:last-child{grid-column:1/-1}.dash-money span{font-size:11px;margin-bottom:9px}.dash-money strong{font-size:18px}.dash-activity{grid-template-columns:1fr;gap:8px}.dash-count{padding:12px}.dash-panel{padding:14px}.dash-panel .panel-head{align-items:flex-start}.dash-panel .panel-head .btn{font-size:10px;padding:8px 9px}}
-</style>
+.source-choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.source-choice{min-height:43px;padding:9px 8px;border:1px solid var(--line);border-radius:10px;background:#29251f;color:var(--muted);font-weight:750;font-size:12px;transition:background .15s,border-color .15s,color .15s}.source-choice:hover{border-color:var(--yellow);color:var(--text)}.source-choice.selected{background:#554326;border-color:var(--yellow);color:var(--yellow);box-shadow:inset 0 0 0 1px #f5c84244}@media(max-width:520px){.source-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.source-choice{min-height:46px;font-size:13px}}</style>
 </head>
 <body>
 <div id="auth"></div>
@@ -226,7 +226,7 @@ function clientsView(){
  '<div class="field"><label>Téléphone</label><input name="phone" type="tel"></div>'+
  '<div class="field"><label>Adresse</label><input name="address"></div>'+
  '<div class="field"><label>E-mail</label><input name="email" type="email"></div>'+
- '<div class="field"><label>Source du client</label><input name="source" placeholder="Facebook, recommandation..."></div>'+
+ '<div class="field"><label>Source du client</label><input type="hidden" name="source" value=""><div class="source-choices" role="group" aria-label="Source du client"><button type="button" class="source-choice" data-source-choice="Facebook">Facebook</button><button type="button" class="source-choice" data-source-choice="WhatsApp">WhatsApp</button><button type="button" class="source-choice" data-source-choice="Google">Google</button><button type="button" class="source-choice" data-source-choice="Passage">Passage</button></div><small class="muted">Choisissez comment le client a connu l’atelier.</small></div>'+
  '<div class="field"><label>Type d’accueil *</label><select name="reception_type"><option value="rendez_vous">Rendez-vous</option><option value="direct">Client direct</option></select></div>'+
  '<div class="field"><label>Travail demandé *</label><input name="service" required placeholder="Ex. Réfection d’un salon"></div>'+
  '<div class="field"><label>Date de récupération du salon *</label><input name="collection_date" type="date" required></div>'+
@@ -253,7 +253,7 @@ function projectsView(){
 function projectCard(p){return '<article class="item"><div class="item-top"><h3>'+esc(clientName(p.client_id))+'</h3><span class="tag">'+esc(statusLabels[p.status]||p.status)+'</span></div><p>'+esc(p.service||'Service non précisé')+'</p><p>Réception : '+date(p.start_date)+' · Livraison prévue : '+date(p.due_date)+'</p><p>Prix : '+amount(p.final_price)+' · Acompte : '+amount(p.deposit)+' · Solde : '+amount(projectBalance(p))+'</p><div class="item-actions"><select data-status="'+p.id+'" aria-label="Statut du projet">'+Object.entries(statusLabels).map(([k,v])=>'<option value="'+k+'" '+(p.status===k?'selected':'')+'>'+v+'</option>').join('')+'</select><button class="btn gold" data-print-project="'+p.id+'">Fiche atelier</button><button class="btn gold" data-print-client="'+p.id+'">Rendez-vous PDF</button><button class="btn" data-details="'+p.id+'">Mesures & photos</button></div><div id="details-'+p.id+'" class="panel hidden" style="margin-top:14px"><div class="muted">Chargement des détails…</div></div></article>'}
 function wire(){
  const uf=$('#unified-client-form');
- if(uf){const existing=uf.querySelector('[name="existing_client_id"]');existing.onchange=()=>{const c=clients.find(x=>x.id===existing.value);if(!c)return;uf.elements.name.value=c.name||'';uf.elements.phone.value=c.phone||'';uf.elements.address.value=c.address||'';uf.elements.email.value=c.email||'';};}
+ if(uf){const sourceInput=uf.querySelector('[name="source"]');uf.querySelectorAll('[data-source-choice]').forEach(b=>b.onclick=()=>{sourceInput.value=b.dataset.sourceChoice;uf.querySelectorAll('[data-source-choice]').forEach(x=>{x.classList.toggle('selected',x===b);x.setAttribute('aria-pressed',x===b?'true':'false')})});const existing=uf.querySelector('[name="existing_client_id"]');existing.onchange=()=>{const c=clients.find(x=>x.id===existing.value);if(!c)return;uf.elements.name.value=c.name||'';uf.elements.phone.value=c.phone||'';uf.elements.address.value=c.address||'';uf.elements.email.value=c.email||'';};}
  if(uf)uf.onsubmit=async e=>{
   e.preventDefault();const f=Object.fromEntries(new FormData(uf));
   const price=Number(f.final_price),deposit=Number(f.deposit||0);
