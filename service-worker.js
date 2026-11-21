@@ -1,5 +1,5 @@
-const CACHE_NAME = 'atelier-ahmed-shell-v6';
-const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './assets/ahmed-logo.webp'];
+const CACHE_NAME = 'atelier-ahmed-shell-v7';
+const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
 
 self.addEventListener('install', event => {
   event.waitUntil(
