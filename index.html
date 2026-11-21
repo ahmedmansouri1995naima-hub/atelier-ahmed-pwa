@@ -100,7 +100,7 @@ function shell(){return '<header><div class="brand"><div class="mark">AH</div><d
 function tvScreen(){
  const today=localISODate();
  const events=[
-  ...appointments.filter(a=>a.event_date>=today).map(a=>({...a,event_date:a.event_date,event_time:a.appointment_time,event_label:'Rendez-vous'})),
+  ...appointments.filter(a=>a.appointment_date>=today).map(a=>({...a,event_date:a.appointment_date,event_time:a.appointment_time,event_label:'Rendez-vous'})),
   ...projects.flatMap(p=>[
    ...(p.collection_date&&p.collection_date>=today?[{id:p.id+'-collect',client_id:p.client_id,event_date:p.collection_date,event_time:p.collection_time,event_label:'Récupération'}]:[]),
    ...(p.ready_date&&p.ready_date>=today?[{id:p.id+'-ready',client_id:p.client_id,event_date:p.ready_date,event_time:p.ready_time,event_label:'Salon disponible'}]:[])
