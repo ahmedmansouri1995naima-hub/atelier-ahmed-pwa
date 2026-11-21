@@ -159,7 +159,25 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""],.selectable-
 .app-confirm-actions .btn.danger{background:#8b4937;border-color:#a95e49;color:#fff}
 @keyframes confirmFade{from{opacity:0}to{opacity:1}}@keyframes confirmRise{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:520px){.app-confirm-backdrop{align-items:flex-end;padding:12px}.app-confirm{width:100%;padding:24px 21px calc(22px + env(safe-area-inset-bottom));border-radius:24px 24px 18px 18px}.app-confirm h2{font-size:22px}.app-confirm-actions{display:grid;grid-template-columns:1fr 1fr}.app-confirm-actions .btn{width:100%;font-size:13px;padding:10px 8px}}
-.appointment-linked{display:grid;gap:9px;margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#28241e}.appointment-status-label{font-size:12px;color:var(--muted);font-weight:700}.appointment-linked select{width:100%;min-height:48px;padding:10px 13px;border:1px solid var(--line);border-radius:11px;background:#211e19;color:var(--text);font:inherit}.appointment-linked .tag{justify-self:start}.payment-preview{padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:#2d2922;color:#f2cc58;font-weight:750;font-size:14px}.payment-preview.invalid{border-color:#c87552;background:#422d25;color:#ffc09c}input[aria-invalid="true"]{border-color:#d77d55!important;box-shadow:0 0 0 2px #d77d5533}</style>
+.appointment-linked{display:grid;gap:9px;margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#28241e}.appointment-status-label{font-size:12px;color:var(--muted);font-weight:700}.appointment-linked select{width:100%;min-height:48px;padding:10px 13px;border:1px solid var(--line);border-radius:11px;background:#211e19;color:var(--text);font:inherit}.appointment-linked .tag{justify-self:start}.payment-preview{padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:#2d2922;color:#f2cc58;font-weight:750;font-size:14px}.payment-preview.invalid{border-color:#c87552;background:#422d25;color:#ffc09c}input[aria-invalid="true"]{border-color:#d77d55!important;box-shadow:0 0 0 2px #d77d5533}
+/* Scenic glass theme */
+:root{--bg:#171b1c;--panel:rgba(25,29,29,.70);--panel2:rgba(35,39,37,.68);--line:rgba(230,207,164,.42)}
+html{background:#171b1c}
+body{position:relative;isolation:isolate;background:#171b1c;color:var(--text)}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-gradient(180deg,rgba(12,17,19,.28),rgba(15,18,17,.42)),url("https://images.pexels.com/photos/35689216/pexels-photo-35689216.jpeg?auto=compress&cs=tinysrgb&w=1800");background-size:cover;background-position:center center;background-repeat:no-repeat;transform:translateZ(0)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,20,22,.12),rgba(18,20,18,.22));pointer-events:none}
+header:not(.tv-header){background:rgba(23,27,29,.72);backdrop-filter:blur(18px) saturate(125%);-webkit-backdrop-filter:blur(18px) saturate(125%)}
+.panel,.stat,.item,.dash-money,.dash-count,.tv-agenda{background:linear-gradient(145deg,rgba(48,48,43,.76),rgba(24,27,26,.70));backdrop-filter:blur(17px) saturate(120%);-webkit-backdrop-filter:blur(17px) saturate(120%);border-color:rgba(230,207,164,.38);box-shadow:0 12px 36px rgba(0,0,0,.20)}
+.nav{border-color:rgba(230,207,164,.35)}
+input,select,textarea{background:rgba(20,22,21,.72);border-color:rgba(230,207,164,.48);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav button,.btn,.source-choice{background:rgba(31,31,28,.70);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.appointment-linked,.tv-date,.dash-date{background:rgba(35,35,30,.72)}
+.login{background:linear-gradient(145deg,rgba(48,48,43,.82),rgba(24,27,26,.78))}
+.tv-wrap{background:transparent}
+.tv-header{background:rgba(23,27,29,.66)!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+@media(max-width:600px){body::before{background-position:center center;background-attachment:scroll}}
+
+</style>
 </head>
 <body>
 <div id="auth"></div>
