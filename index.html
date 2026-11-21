@@ -68,6 +68,7 @@ const CONFIGURED=true;
 const db=CONFIGURED?supabase.createClient(SB_URL,SB_KEY):null;
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const localISODate=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const date=v=>v?new Date(v+'T00:00:00').toLocaleDateString('fr-FR'):'—';
 const amount=v=>Number(v||0).toLocaleString('fr-TN',{minimumFractionDigits:3,maximumFractionDigits:3})+' TND';
 const statusLabels={pending:'En attente',progress:'Reçu à l’atelier',done:'Terminé',delivered:'Livré'};
@@ -83,7 +84,7 @@ async function reload(){
  if(role==='tv'){
   const [c,a]=await Promise.all([
    db.from('clients').select('id,name').order('name'),
-   db.from('appointments').select('id,client_id,appointment_date,appointment_time').gte('appointment_date',new Date().toISOString().slice(0,10)).order('appointment_date',{ascending:true}).order('appointment_time',{ascending:true})
+   db.from('appointments').select('id,client_id,appointment_date,appointment_time').gte('appointment_date',localISODate()).order('appointment_date',{ascending:true}).order('appointment_time',{ascending:true})
   ]);
   const err=c.error||a.error;if(err){toast('Erreur de chargement : '+err.message);return}
   clients=c.data||[];appointments=a.data||[];projects=[];return;
