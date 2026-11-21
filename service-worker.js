@@ -1,4 +1,4 @@
-const CACHE_NAME = 'atelier-ahmed-shell-v20';
+const CACHE_NAME = 'atelier-ahmed-shell-v21';
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
 
 self.addEventListener('install', event => {
