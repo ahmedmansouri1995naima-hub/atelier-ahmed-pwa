@@ -186,6 +186,50 @@ body::before{animation:scenicDrift 48s ease-in-out infinite;will-change:backgrou
 body::after{content:"";position:fixed;inset:0;z-index:4;pointer-events:none;background-image:linear-gradient(180deg,rgba(15,20,22,.10),rgba(18,20,18,.18)),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='620' height='210' viewBox='0 0 620 210'%3E%3Cg fill='none' stroke='%23fff8e9' stroke-width='3.2' stroke-linecap='round' opacity='.82'%3E%3Cpath d='M55 70q13 -13 26 0q13 -13 26 0 M170 42q10 -10 20 0q10 -10 20 0 M285 88q12 -12 24 0q12 -12 24 0 M405 52q9 -9 18 0q9 -9 18 0 M510 112q11 -11 22 0q11 -11 22 0'/%3E%3C/g%3E%3C/svg%3E");background-size:cover,620px 210px;background-repeat:no-repeat,no-repeat;background-position:center,-620px 19%;animation:birdsFly 34s linear infinite;opacity:.62}
 @media(prefers-reduced-motion:reduce){body::before,body::after{animation:none!important;transform:none!important}}
 
+
+/* Professional TV workshop board */
+.tv-board{padding:clamp(12px,2vw,30px);background:linear-gradient(135deg,rgba(15,18,20,.86),rgba(24,23,20,.90)),url('https://images.unsplash.com/photo-1745750747042-6610300e74ab?auto=format&fit=crop&fm=jpg&q=70&w=2200') center/cover fixed;color:#fff8e9}
+.tv-board .tv-header{display:flex;min-height:72px;align-items:center;gap:22px;border-bottom:1px solid rgba(233,185,90,.32);padding:0 0 16px;background:transparent}
+.tv-board .brand{font-size:clamp(13px,1.4vw,19px)}
+.tv-board .tv-clock{margin-left:auto;text-align:right}
+.tv-board .tv-clock strong{font-size:clamp(12px,1.2vw,16px)}
+.tv-board #tv-live-clock{display:block;color:#e9b95a;font-size:12px;margin-top:4px}
+.tv-board-title{display:flex;justify-content:space-between;align-items:center;gap:18px;margin:clamp(14px,2vh,24px) 0}
+.tv-board-title h1{font-size:clamp(23px,2.4vw,36px);margin:5px 0;letter-spacing:-.04em}
+.tv-board-title p{margin:0;color:#c9bda8;font-size:clamp(10px,1vw,13px)}
+.tv-kpis{display:flex;gap:10px}
+.tv-kpis>div{min-width:110px;padding:10px 15px;border:1px solid rgba(233,185,90,.34);border-radius:13px;background:rgba(30,29,26,.72);text-align:center}
+.tv-kpis strong{display:block;font-size:clamp(18px,2vw,27px);color:#f5c842}
+.tv-kpis span{font-size:9px;letter-spacing:.13em;color:#c9bda8}
+.tv-columns{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr);gap:clamp(12px,1.6vw,22px);align-items:start}
+.tv-column{min-width:0;padding:clamp(11px,1.35vw,18px);border:1px solid rgba(233,185,90,.32);border-radius:17px;background:rgba(24,26,26,.76);backdrop-filter:blur(15px);box-shadow:0 12px 35px rgba(0,0,0,.22)}
+.tv-column-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:11px}
+.tv-overline{font-size:9px;letter-spacing:.18em;color:#e9b95a;font-weight:800}
+.tv-column-head h2{font-size:clamp(15px,1.45vw,21px);margin:4px 0 0}
+.tv-counter{padding:6px 10px;border-radius:999px;background:rgba(233,185,90,.13);border:1px solid rgba(233,185,90,.4);color:#f5d58a;font-size:11px;font-weight:800;white-space:nowrap}
+.tv-cards{display:grid;gap:8px}
+.tv-project-card,.tv-appointment-card{display:flex;align-items:center;gap:11px;min-width:0;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.13);box-shadow:0 4px 12px rgba(0,0,0,.16)}
+.tv-project-card{background:linear-gradient(100deg,rgba(37,112,77,.92),rgba(22,79,59,.88))}
+.tv-project-card.warning{background:linear-gradient(100deg,rgba(206,119,27,.96),rgba(142,69,17,.94))}
+.tv-project-card.urgent{background:linear-gradient(100deg,rgba(190,57,52,.98),rgba(121,32,33,.96))}
+.tv-days{width:44px;height:44px;flex:none;display:grid;align-content:center;justify-items:center;border:1px solid rgba(255,255,255,.52);border-radius:10px;background:rgba(0,0,0,.18)}
+.tv-days strong{font-size:18px;line-height:1.05}.tv-days span{font-size:8px;letter-spacing:.1em}
+.tv-project-info,.tv-appointment-info{min-width:0;flex:1}
+.tv-project-info h3,.tv-appointment-info h3{font-size:clamp(11px,1vw,14px);margin:0 0 3px;overflow-wrap:anywhere}
+.tv-project-info p,.tv-appointment-info p{font-size:10px;color:rgba(255,255,255,.82);margin:0 0 3px}
+.tv-project-info small{display:block;font-size:9px;color:rgba(255,255,255,.72);overflow-wrap:anywhere}
+.tv-status{font-size:9px;padding:5px 7px;border-radius:7px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.25);white-space:nowrap}
+.tv-appointment-card{background:linear-gradient(110deg,rgba(65,78,91,.94),rgba(41,52,64,.94))}
+.tv-date-block{width:43px;height:45px;flex:none;border-radius:10px;background:rgba(255,255,255,.10);display:grid;align-content:center;justify-items:center}
+.tv-date-block strong{font-size:20px;line-height:1;color:#fff}.tv-date-block span{font-size:9px;text-transform:uppercase;color:#d8dfe5;margin-top:4px}
+.tv-time{font-size:11px;font-weight:800;color:#f5d58a;white-space:nowrap}
+.tv-board-empty{padding:35px 12px;text-align:center;color:#c9bda8;border:1px dashed rgba(233,185,90,.3);border-radius:12px;font-size:12px}
+.tv-board .tv-footer{margin-top:14px;font-size:9px;letter-spacing:.18em}
+@media(min-width:900px) and (orientation:landscape){.tv-board{min-height:100dvh;overflow:hidden}.tv-columns{height:calc(100dvh - 215px)}.tv-column{height:100%;overflow:hidden}.tv-cards{max-height:calc(100% - 42px);overflow:auto;scrollbar-width:thin}.tv-project-card,.tv-appointment-card{min-height:54px}}
+@media(max-width:899px){.tv-board{min-height:100vh}.tv-board .tv-header{flex-wrap:wrap}.tv-board .tv-clock{display:none}.tv-board-title{align-items:flex-start}.tv-columns{grid-template-columns:1fr}.tv-kpis>div{min-width:80px;padding:8px}.tv-project-info small{font-size:9px}}
+@media(max-width:520px){.tv-board{padding:10px}.tv-board .tv-header .tv-controls{margin-left:auto}.tv-board .tv-header .btn{padding:8px 9px;font-size:10px}.tv-board-title{display:block}.tv-kpis{margin-top:12px}.tv-kpis>div{flex:1}.tv-project-card,.tv-appointment-card{padding:9px;gap:8px}.tv-status{display:none}}
+@media(prefers-reduced-motion:reduce){.tv-board *{scroll-behavior:auto!important}}
+
 </style>
 </head>
 <body>
@@ -218,8 +262,8 @@ async function reload(){
  if(role==='tv'){
   const [c,a,p]=await Promise.all([
    db.from('clients').select('id,name,client_number').order('name'),
-   db.from('appointments').select('id,client_id,appointment_date,appointment_time').gte('appointment_date',localISODate()).order('appointment_date',{ascending:true}).order('appointment_time',{ascending:true}),
-   db.from('projects').select('id,client_id,collection_date,collection_time,ready_date,ready_time,service').not('collection_date','is',null)
+   db.from('appointments').select('id,client_id,appointment_date,appointment_time,converted_project_id').gte('appointment_date',localISODate()).order('appointment_date',{ascending:true}).order('appointment_time',{ascending:true}),
+   db.from('projects').select('id,client_id,collection_date,collection_time,ready_date,ready_time,service,status').not('collection_date','is',null)
   ]);
   const err=c.error||a.error||p.error;if(err){toast('Erreur de chargement : '+err.message);return}
   clients=c.data||[];appointments=a.data||[];projects=p.data||[];return;
@@ -230,15 +274,12 @@ function clientName(id){return clients.find(c=>c.id===id)?.name||'Client introuv
 function shell(){return '<header><div class="brand"><div class="mark">AH</div><div>AHMED TAPISSERIE<small>GESTION D’ATELIER</small></div></div><div class="header-actions"><span class="muted">'+esc(session.user.email)+'</span><button class="btn" id="logout">Déconnexion</button></div></header><main class="app-shell"><div class="eyebrow">ESPACE PROFESSIONNEL</div><h1 class="page-title">Votre atelier, parfaitement organisé.</h1><p class="sub">Clients, rendez-vous et projets — au même endroit.</p><nav class="nav">'+[['dashboard','Vue d’ensemble'],['clients','Ajouter client'],['appointments','Rendez-vous'],['projects','Projets'],['archive','Clients archivés']].map(([k,v])=>'<button data-tab="'+k+'" class="'+(active===k?'active':'')+'">'+v+'</button>').join('')+'</nav><section id="view"></section></main>'}
 function tvScreen(){
  const today=localISODate();
- const events=[
-  ...appointments.filter(a=>a.appointment_date>=today).map(a=>({...a,event_date:a.appointment_date,event_time:a.appointment_time,event_label:'Rendez-vous'})),
-  ...projects.flatMap(p=>[
-   ...(p.collection_date&&p.collection_date>=today?[{id:p.id+'-collect',client_id:p.client_id,event_date:p.collection_date,event_time:p.collection_time,event_label:'Récupération'}]:[]),
-   ...(p.ready_date&&p.ready_date>=today?[{id:p.id+'-ready',client_id:p.client_id,event_date:p.ready_date,event_time:p.ready_time,event_label:'Salon disponible'}]:[])
-  ])
- ].sort((a,b)=>(a.event_date+a.event_time).localeCompare(b.event_date+b.event_time));
- const upcoming=events;
- return '<div class="tv-wrap"><header class="tv-header"><div class="brand"><div class="mark">AH</div><div>AHMED TAPISSERIE<small>ACCUEIL & RENDEZ-VOUS</small></div></div><div class="tv-clock"><div class="eyebrow">AUJOURD’HUI</div><strong>'+new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+'</strong></div><div class="tv-controls"><button class="btn" id="fullscreen">Plein écran</button><button class="btn" id="logout">Déconnexion</button></div></header><div class="tv-main"><section class="tv-welcome"><div class="eyebrow">BIENVENUE À L’ATELIER</div><h1>Votre confiance,<br><span>notre savoir-faire.</span></h1><p>Tapissier Ahmed · Rénovation & habillage de mobilier</p><div class="tv-count"><strong>'+upcoming.length+'</strong><span>RENDEZ-VOUS À VENIR</span></div></section><aside class="tv-agenda"><div class="tv-agenda-head"><div><div class="eyebrow">AGENDA</div><h2>Prochains rendez-vous</h2></div><span class="tag">'+upcoming.length+' À VENIR</span></div>'+ (upcoming.length?upcoming.map(a=>'<article class="tv-appointment"><div class="tv-date"><strong>'+new Date(a.event_date+'T00:00:00').toLocaleDateString('fr-FR',{day:'2-digit'})+'</strong><span>'+new Date(a.event_date+'T00:00:00').toLocaleDateString('fr-FR',{month:'short'}).replace('.','')+'</span></div><div class="tv-person"><h3>'+esc(clientName(a.client_id))+'</h3><p>'+esc(a.event_label||'Rendez-vous')+' · '+new Date(a.event_date+'T00:00:00').toLocaleDateString('fr-FR',{weekday:'long'})+'</p></div><div class="tv-time">'+esc(a.event_time?String(a.event_time).slice(0,5):'Heure à définir')+'</div></article>').join(''):'<div class="tv-empty">Aucun rendez-vous à venir.</div>')+'</aside></div><footer class="tv-footer">MERCI DE VOTRE VISITE <span>•</span> AHMED TAPISSERIE</footer></div>';
+ const activeProjects=projects.filter(p=>p.status!=='delivered').sort((a,b)=>(a.collection_date||'').localeCompare(b.collection_date||'')).slice(0,12);
+ const upcoming=appointments.filter(a=>!a.converted_project_id&&a.appointment_date>=today).slice(0,10);
+ const daysLeft=p=>{if(!p.collection_date)return 30;const start=new Date(p.collection_date+'T00:00:00');const now=new Date(today+'T00:00:00');const elapsed=Math.max(0,Math.floor((now-start)/86400000));return Math.max(0,30-elapsed)};
+ const tone=p=>{const d=daysLeft(p);return d<=7?'urgent':d<=15?'warning':'normal'};
+ const dateLabel=v=>v?new Date(v+'T00:00:00').toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'}):'Date à préciser';
+ return '<div class="tv-wrap tv-board"><header class="tv-header"><div class="brand"><div class="mark">AH</div><div>AHMED TAPISSERIE<small>TABLEAU DE PILOTAGE DE L’ATELIER</small></div></div><div class="tv-clock"><div class="eyebrow">AUJOURD’HUI</div><strong>'+new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+'</strong><span id="tv-live-clock"></span></div><div class="tv-controls"><button class="btn" id="fullscreen">Plein écran</button><button class="btn" id="logout">Déconnexion</button></div></header><div class="tv-board-title"><div><div class="eyebrow">SUIVI EN TEMPS RÉEL</div><h1>Bienvenue à l’atelier</h1><p>La qualité de notre travail se mesure à chaque détail.</p></div><div class="tv-kpis"><div><strong>'+activeProjects.length+'/12</strong><span>À L’ATELIER</span></div><div><strong>'+upcoming.length+'/10</strong><span>RENDEZ-VOUS</span></div></div></div><div class="tv-columns"><section class="tv-column tv-workshop"><div class="tv-column-head"><div><span class="tv-overline">PRODUCTION</span><h2>Salons à l’atelier</h2></div><span class="tv-counter">'+activeProjects.length+' / 12</span></div><div class="tv-cards">'+(activeProjects.length?activeProjects.map(p=>'<article class="tv-project-card '+tone(p)+'"><div class="tv-days"><strong>'+daysLeft(p)+'</strong><span>JOURS</span></div><div class="tv-project-info"><h3>'+esc(clientName(p.client_id))+'</h3><p>'+esc(p.service||'Travail en atelier')+'</p><small>Récupéré : '+dateLabel(p.collection_date)+' · Livraison : '+dateLabel(p.ready_date)+'</small></div><span class="tv-status">'+esc(statusLabels[p.status]||'En attente')+'</span></article>').join(''):'<div class="tv-board-empty">Aucun salon actuellement à l’atelier</div>')+'</div></section><section class="tv-column tv-upcoming"><div class="tv-column-head"><div><span class="tv-overline">AGENDA</span><h2>Prochains rendez-vous</h2></div><span class="tv-counter">'+upcoming.length+' / 10</span></div><div class="tv-cards">'+(upcoming.length?upcoming.map(a=>'<article class="tv-appointment-card"><div class="tv-date-block"><strong>'+new Date(a.appointment_date+'T00:00:00').toLocaleDateString('fr-FR',{day:'2-digit'})+'</strong><span>'+new Date(a.appointment_date+'T00:00:00').toLocaleDateString('fr-FR',{month:'short'}).replace('.','')+'</span></div><div class="tv-appointment-info"><h3>'+esc(clientName(a.client_id))+'</h3><p>'+dateLabel(a.appointment_date)+'</p></div><span class="tv-time">'+esc(a.appointment_time?String(a.appointment_time).slice(0,5):'À définir')+'</span></article>').join(''):'<div class="tv-board-empty">Aucun rendez-vous à venir</div>')+'</div></section></div><footer class="tv-footer">AHMED TAPISSERIE <span>•</span> SAVOIR-FAIRE & CONFIANCE</footer></div>';
 }
 function render(){ if(role==='tv'){ $('#app').innerHTML=tvScreen();$('#logout').onclick=async()=>{await db.auth.signOut();location.reload()};const fs=$('#fullscreen');if(fs)fs.onclick=async()=>{try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen()}catch(e){toast('Le plein écran doit être autorisé par le navigateur.')}};return;} $('#app').innerHTML=shell();$('#logout').onclick=async()=>{await db.auth.signOut();location.reload()};document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{active=b.dataset.tab;query='';render()});view();}
 function view(){const el=$('#view');if(active==='dashboard')el.innerHTML=dashboard();if(active==='clients')el.innerHTML=clientsView();if(active==='appointments')el.innerHTML=appointmentsView();if(active==='projects')el.innerHTML=projectsView();if(active==='archive')el.innerHTML=archivedClientsView();wire();}
