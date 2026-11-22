@@ -448,6 +448,7 @@ async function printProject(id){
  photoSection('before','Photos avant travaux')+photoSection('after','Photos après travaux')+
  '<section class="client-print-section"><h2><span>06</span> Notes atelier</h2><div class="project-print-notes">'+note(p.notes)+'</div></section>'+
  '<div class="client-print-signatures"><div><span>Responsable atelier</span><i></i></div><div><span>Contrôle qualité</span><i></i></div></div><footer class="client-print-footer">AHMED TAPISSERIE · Fiche de suivi du projet</footer></article>';
+ await Promise.all(Array.from($('#paper').querySelectorAll('img')).map(img=>img.decode().catch(()=>{})));
  runPrint();
 }
 function printAppointment(id){const a=appointments.find(x=>x.id===id);if(!a)return;$('#paper').innerHTML='<div class="eyebrow">AHMED TAPISSERIE</div><h1>Fiche de rendez-vous</h1><table>'+printRows([['Client',esc(clientName(a.client_id))],['Date',date(a.appointment_date)],['Heure',esc(a.appointment_time||'—')],['Estimation',amount(a.estimated_amount)],['Notes',esc(a.notes||'—') ]])+'</table><div class="sign"><span>Signature du client</span><span>Signature de l’atelier</span></div>';runPrint()}
