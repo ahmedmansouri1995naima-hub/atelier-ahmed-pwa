@@ -97,6 +97,12 @@ input::placeholder,textarea::placeholder{color:#a99c86}input:focus,select:focus,
  #paper .client-print-signatures div{font-size:12pt}
  #paper .client-print-signatures i{height:32px}
  #paper .client-print-footer{font-size:11pt;margin-top:18px}
+ #paper .project-print-notes{border:1px solid #d8d1c3;border-radius:8px;padding:13px 15px;margin:9px 0;min-height:40px;font-size:13pt;line-height:1.5;overflow-wrap:anywhere}
+ #paper .project-print-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ #paper .project-print-photos figure{margin:0;break-inside:avoid}
+ #paper .project-print-photos img{display:block;width:100%;height:180px;object-fit:cover;border:1px solid #d8d1c3;border-radius:7px}
+ #paper .project-print-photos figcaption{font-size:10pt;color:#51483a;margin-top:5px}
+ #paper .project-print-empty{font-size:12pt;color:#777;margin:8px 0}
  #paper .client-print-section,#paper .client-print-balance,#paper .client-print-signatures{break-inside:avoid}
 }
 @media(max-width:600px){.client-print{padding:24px 16px}.client-print-head{align-items:flex-start}.client-print-brand{font-size:15px}.client-print-sub{font-size:10px}.client-print-number{font-size:12px;padding:7px 9px}.client-print h1{font-size:34px}.client-print-title p{font-size:14px}.client-print-section h2{font-size:18px}.client-print td{font-size:15px;padding:10px 9px}.client-print-balance{font-size:14px;padding:13px}.client-print-balance strong{font-size:19px}.client-print-signatures{gap:20px}.client-print-signatures div{font-size:13px}}@media(max-width:600px){.client-print{padding:22px 16px}.client-print-head{align-items:flex-start}.client-print-brand{font-size:14px}.client-print-number{font-size:11px;padding:7px}.client-print h1{font-size:29px}.client-print td{font-size:14px;padding:10px 9px}.client-print-section h2{font-size:17px}.client-print-balance{font-size:14px}.client-print-balance strong{font-size:17px}.client-print-signatures{gap:20px}}
@@ -336,7 +342,7 @@ function projectsView(){
  return '<div class="toolbar"><input id="search" placeholder="Rechercher un dossier..." value="'+esc(query)+'"><select id="status-filter"><option value="">Tous les statuts</option>'+Object.entries(statusLabels).map(([k,v])=>'<option value="'+k+'">'+v+'</option>').join('')+'</select></div>'+
  '<div id="project-list" class="list">'+projects.filter(p=>(!statusFilter||p.status===statusFilter)&&(clientName(p.client_id)+" "+(p.service||"")).toLocaleLowerCase().includes(query.toLocaleLowerCase())).map(projectCard).join("")+(projects.length?"":'<div class="empty">Aucun dossier enregistré.</div>')+'</div>';
 }
-function projectCard(p){return '<article class="item"><div class="item-top"><h3>'+esc(clientName(p.client_id))+'</h3><span class="tag">'+esc(statusLabels[p.status]||p.status)+'</span></div><p>'+esc(p.service||'Service non précisé')+'</p><p>Réception : '+date(p.start_date)+' · Livraison prévue : '+date(p.due_date)+'</p><p>Prix : '+amount(p.final_price)+' · Acompte : '+amount(p.deposit)+' · Solde : '+amount(projectBalance(p))+'</p><div class="item-actions"><select data-status="'+p.id+'" aria-label="Statut du projet">'+Object.entries(statusLabels).map(([k,v])=>'<option value="'+k+'" '+(p.status===k?'selected':'')+'>'+v+'</option>').join('')+'</select><button class="btn gold" data-print-project="'+p.id+'">Fiche atelier</button><button class="btn gold" data-print-client="'+p.id+'">Rendez-vous PDF</button><button class="btn" data-details="'+p.id+'">Mesures & photos</button></div><div id="details-'+p.id+'" class="panel hidden" style="margin-top:14px"><div class="muted">Chargement des détails…</div></div></article>'}
+function projectCard(p){return '<article class="item"><div class="item-top"><h3>'+esc(clientName(p.client_id))+'</h3><span class="tag">'+esc(statusLabels[p.status]||p.status)+'</span></div><p>'+esc(p.service||'Service non précisé')+'</p><p>Réception : '+date(p.start_date)+' · Livraison prévue : '+date(p.due_date)+'</p><p>Prix : '+amount(p.final_price)+' · Acompte : '+amount(p.deposit)+' · Solde : '+amount(projectBalance(p))+'</p><div class="item-actions"><select data-status="'+p.id+'" aria-label="Statut du projet">'+Object.entries(statusLabels).map(([k,v])=>'<option value="'+k+'" '+(p.status===k?'selected':'')+'>'+v+'</option>').join('')+'</select><button class="btn gold" data-print-project="'+p.id+'">Fiche projet</button><button class="btn gold" data-print-client="'+p.id+'">Rendez-vous PDF</button><button class="btn" data-details="'+p.id+'">Mesures & photos</button></div><div id="details-'+p.id+'" class="panel hidden" style="margin-top:14px"><div class="muted">Chargement des détails…</div></div></article>'}
 function wire(){
  const uf=$('#unified-client-form');
  if(uf){const priceInput=uf.elements.final_price,depositInput=uf.elements.deposit,paymentPreview=uf.querySelector('#payment-preview');const updatePaymentPreview=()=>{const price=Number(priceInput.value||0),deposit=Number(depositInput.value||0),valid=price>=0&&deposit>=0&&deposit<=price;paymentPreview.textContent=valid?'Reste à payer : '+amount(Math.max(0,price-deposit)):'Attention : l’acompte dépasse le prix convenu.';paymentPreview.classList.toggle('invalid',!valid);};priceInput.addEventListener('input',updatePaymentPreview);depositInput.addEventListener('input',updatePaymentPreview);updatePaymentPreview();const sourceInput=uf.querySelector('[name="source"]');uf.querySelectorAll('[data-source-choice]').forEach(b=>b.onclick=()=>{sourceInput.value=b.dataset.sourceChoice;uf.querySelectorAll('[data-source-choice]').forEach(x=>{x.classList.toggle('selected',x===b);x.setAttribute('aria-pressed',x===b?'true':'false')})});const existing=uf.querySelector('[name="existing_client_id"]');existing.onchange=()=>{const c=clients.find(x=>x.id===existing.value);if(!c)return;uf.elements.name.value=c.name||'';uf.elements.phone.value=c.phone||'';uf.elements.address.value=c.address||'';uf.elements.email.value=c.email||'';};}
@@ -413,7 +419,37 @@ function printClientFiche(id){
  '<footer class="client-print-footer">Merci de votre confiance · Ahmed Tapisserie</footer></article>';
  runPrint();
 }
-function printProject(id){const p=projects.find(x=>x.id===id);if(!p)return;$('#paper').innerHTML='<div class="eyebrow">AHMED TAPISSERIE</div><h1>Fiche atelier</h1><p>Document interne de suivi</p><table>'+printRows([['Client',esc(clientName(p.client_id))],['Service',esc(p.service)],['Statut',esc(statusLabels[p.status]||p.status)],['Récupération',date(p.collection_date||p.start_date)],['Disponibilité',date(p.ready_date||p.due_date)],['Notes internes',esc(p.notes||'—') ]])+'</table><div class="sign"><span>Suivi atelier</span><span>Ahmed Tapisserie</span></div>';runPrint()}
+async function printProject(id){
+ const p=projects.find(x=>x.id===id);if(!p)return;
+ const c=clients.find(x=>x.id===p.client_id)||{};
+ const [m,photosResult,types]=await Promise.all([
+  db.from('project_measurements').select('*').eq('project_id',id).order('created_at'),
+  db.from('project_photos').select('*').eq('project_id',id).order('phase').order('position'),
+  db.from('furniture_types').select('id,name')
+ ]);
+ if(m.error||photosResult.error||types.error)return toast('Impossible de préparer la fiche projet.');
+ const type=(types.data||[]).find(x=>x.id===p.furniture_type_id)?.name||'À préciser';
+ const measurements=m.data||[];
+ const photos=await Promise.all((photosResult.data||[]).map(async x=>{const {data}=await db.storage.from('atelier-project-photos').createSignedUrl(x.storage_path,3600);return {...x,url:data?.signedUrl||''}}));
+ const photoSection=(phase,label)=>{
+  const rows=photos.filter(x=>x.phase===phase);
+  return '<section class="client-print-section"><h2><span>•</span> '+label+'</h2>'+(rows.length?'<div class="project-print-photos">'+rows.map(x=>x.url?'<figure><img src="'+x.url+'" alt="'+label+'"><figcaption>'+label+' · '+x.position+'/4</figcaption></figure>':'').join('')+'</div>':'<p class="project-print-empty">Aucune photo enregistrée</p>')+'</section>';
+ };
+ const time=v=>v?String(v).slice(0,5):'—';
+ const note=v=>esc(v||'—').replace(/\n/g,'<br>');
+ $('#paper').innerHTML='<article class="client-print project-print">'+
+ '<header class="client-print-head"><div><div class="client-print-brand">AHMED TAPISSERIE</div><div class="client-print-sub">FICHE TECHNIQUE · SUIVI DE FABRICATION</div></div><div class="client-print-number">PROJET · '+String(id).slice(0,8).toUpperCase()+'</div></header>'+
+ '<div class="client-print-title"><div class="client-print-kicker">DOSSIER ATELIER</div><h1>Fiche projet</h1><p>Document de travail — détails de commande, matières et réalisation</p></div>'+
+ '<section class="client-print-section"><h2><span>01</span> Client et rendez-vous</h2><table><tbody>'+printRows([['Client',esc(c.name||'—')],['Téléphone',esc(c.phone||'—')],['Adresse',esc(c.address||'—')],['Date de récupération',date(p.collection_date||p.start_date)+' · '+time(p.collection_time)],['Date de disponibilité',date(p.ready_date||p.due_date)+' · '+time(p.ready_time)],['Type d’accueil',p.reception_type==='rendez_vous'?'Rendez-vous':'Client direct']])+'</tbody></table></section>'+
+ '<section class="client-print-section"><h2><span>02</span> Identification du salon</h2><table><tbody>'+printRows([['Désignation',esc(p.name||'—')],['Type de salon / meuble',esc(type)],['Travail demandé',esc(p.service||'—')],['Type de tissu',esc(p.fabric_type||'À préciser')],['Couleur du tissu',esc(p.fabric_color||'À préciser')]])+'</tbody></table></section>'+
+ '<section class="client-print-section"><h2><span>03</span> Détails d’exécution</h2><div class="project-print-notes">'+note(p.work_details||'Détails des travaux à préciser')+'</div><div class="project-print-notes">'+note(p.description||'Aucune consigne complémentaire')+'</div></section>'+
+ '<section class="client-print-section"><h2><span>04</span> Dimensions générales</h2><table><tbody>'+printRows([['Hauteur',p.height!=null?esc(p.height)+' cm':'—'],['Largeur',p.width!=null?esc(p.width)+' cm':'—'],['Profondeur',p.depth!=null?esc(p.depth)+' cm':'—'],['Temps de travail',p.work_hours!=null?esc(p.work_hours)+' h':'—']])+'</tbody></table></section>'+
+ '<section class="client-print-section"><h2><span>05</span> Mesures détaillées</h2>'+(measurements.length?'<table><tbody>'+printRows(measurements.map(x=>[esc(x.label),esc(x.value)+' '+esc(x.unit)+(x.notes?' · '+esc(x.notes):'')]))+'</tbody></table>':'<p class="project-print-empty">Aucune mesure complémentaire enregistrée</p>')+'</section>'+
+ photoSection('before','Photos avant travaux')+photoSection('after','Photos après travaux')+
+ '<section class="client-print-section"><h2><span>06</span> Notes atelier</h2><div class="project-print-notes">'+note(p.notes)+'</div></section>'+
+ '<div class="client-print-signatures"><div><span>Responsable atelier</span><i></i></div><div><span>Contrôle qualité</span><i></i></div></div><footer class="client-print-footer">AHMED TAPISSERIE · Fiche de suivi du projet</footer></article>';
+ runPrint();
+}
 function printAppointment(id){const a=appointments.find(x=>x.id===id);if(!a)return;$('#paper').innerHTML='<div class="eyebrow">AHMED TAPISSERIE</div><h1>Fiche de rendez-vous</h1><table>'+printRows([['Client',esc(clientName(a.client_id))],['Date',date(a.appointment_date)],['Heure',esc(a.appointment_time||'—')],['Estimation',amount(a.estimated_amount)],['Notes',esc(a.notes||'—') ]])+'</table><div class="sign"><span>Signature du client</span><span>Signature de l’atelier</span></div>';runPrint()}
 document.addEventListener('contextmenu',e=>{const t=e.target;if(t&&t.closest('input,textarea,select,[contenteditable="true"],[contenteditable=""]'))return;e.preventDefault()});
 if(CONFIGURED)db.auth.onAuthStateChange((event)=>{if(event==='SIGNED_OUT'){session=null;$('#app').classList.add('hidden');authView()}});
