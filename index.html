@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#17191b">
+<meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Ahmed Tapisserie — Gestion d'atelier</title>
 <link rel="manifest" href="manifest.webmanifest">
@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#29251f;--panel:#393228;--panel2:#453b2e;--line:#655640;--text:#fff8e9;--muted:#c9bda8;--yellow:#f5c842;--orange:#f28c28;--gold:#e9b95a;--danger:#ff8580;--radius:16px}
+:root{color-scheme:light;--bg:#ffffff;--panel:#ffffff;--panel2:#f8f9fb;--line:#e3e6eb;--text:#20242a;--muted:#68717d;--yellow:#d6a51d;--orange:#e18a25;--gold:#c99a31;--danger:#d9534f;--radius:16px}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px Manrope,system-ui,sans-serif;min-height:100vh}
 button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
 header{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,54px);position:sticky;top:0;background:rgba(35,32,27,.76);backdrop-filter:blur(16px);z-index:5}
@@ -225,6 +225,53 @@ input,select,textarea{background:#211e19;border-color:var(--line)}
 @media(max-width:899px){.tv-board{min-height:100vh}.tv-board .tv-header{flex-wrap:wrap}.tv-board .tv-clock{display:none}.tv-board-title{align-items:flex-start}.tv-columns{grid-template-columns:1fr}.tv-kpis>div{min-width:80px;padding:8px}.tv-project-info small{font-size:9px}}
 @media(max-width:520px){.tv-board{padding:10px}.tv-board .tv-header .tv-controls{margin-left:auto}.tv-board .tv-header .btn{padding:8px 9px;font-size:10px}.tv-board-title{display:block}.tv-kpis{margin-top:12px}.tv-kpis>div{flex:1}.tv-project-card,.tv-appointment-card{padding:9px;gap:8px}.tv-status{display:none}}
 @media(prefers-reduced-motion:reduce){.tv-board *{scroll-behavior:auto!important}}
+
+
+/* White workspace theme — visual-only override; app logic and data remain unchanged */
+body{background:#fff!important;color:#20242a!important}
+header:not(.tv-header){background:rgba(255,255,255,.94)!important;border-color:var(--line)!important}
+.mark{background:#fffaf0!important;color:#9a7414!important}
+.stat,.panel,.item,.dash-money,.dash-count,.tv-agenda,.tv-column,.login{background:#fff!important;color:#20242a!important;border-color:var(--line)!important;box-shadow:0 5px 18px rgba(20,30,45,.06)!important}
+.nav{border-color:var(--line)!important}
+.nav button,.btn,.source-choice{background:#fff!important;color:#303640!important;border-color:var(--line)!important}
+.nav button.active,.btn.primary{background:var(--yellow)!important;color:#242424!important;border-color:var(--yellow)!important}
+.btn.gold{background:#fff8e8!important;color:#8b5a16!important;border-color:#e6c77d!important}
+input,select,textarea,.appointment-linked select{background:#fff!important;color:#20242a!important;border-color:var(--line)!important}
+input::placeholder,textarea::placeholder{color:#89919b!important}
+.tag{background:#fff8df!important;color:#805d10!important;border-color:#e8d28c!important}
+.notice{background:#fff8e8!important;color:#79551a!important;border-color:#ead39b!important}
+#toast{background:var(--yellow)!important;color:#242424!important}
+.tv-wrap,.tv-wrap:fullscreen,.tv-board{background:#fff!important;color:#20242a!important}
+.tv-agenda{background:#fff!important}
+.tv-date,.dash-date,.dash-count-icon{background:#f4f6f8!important;color:#8a6816!important}
+.dash-money{background:#fff!important}
+.dash-money small{color:#68717d!important}
+.dash-money-due{background:#fffaf0!important;border-color:#e6d29b!important}
+.source-choice.selected{background:#fff7df!important;color:#805d10!important}
+.app-confirm-backdrop{background:rgba(25,32,42,.38)!important}
+.app-confirm{background:#fff!important;color:#20242a!important;border-color:#e3e6eb!important;box-shadow:0 24px 80px rgba(20,30,45,.18)!important}
+.app-confirm p{color:#68717d!important}
+.app-confirm-name{color:#805d10!important;background:#fff8e8!important;border-color:#ead39b!important}
+.app-confirm-icon{background:#fff4d5!important;color:#8a6816!important}
+.app-confirm-icon.danger{background:#fff0ed!important;color:#b5473c!important}
+.app-confirm-actions .btn.danger{background:#b5473c!important;color:#fff!important}
+.appointment-linked,.payment-preview{background:#fffaf0!important;color:#805d10!important}
+.payment-preview.invalid{background:#fff0ed!important;color:#a33b2d!important}
+.tv-board .tv-header{border-color:var(--line)!important}
+.tv-board-title p,.tv-kpis span,.tv-board-empty{color:#68717d!important}
+.tv-kpis>div{background:#f8f9fb!important;border-color:var(--line)!important}
+.tv-kpis strong,.tv-board #tv-live-clock,.tv-overline{color:#9a7414!important}
+.tv-counter{background:#fff8df!important;border-color:#ead39b!important;color:#805d10!important}
+.tv-project-card{background:linear-gradient(100deg,#e5f4eb,#cce9d8)!important;color:#173d2b!important}
+.tv-project-card.warning{background:linear-gradient(100deg,#fff0d9,#f9d7a8)!important;color:#603b10!important}
+.tv-project-card.urgent{background:linear-gradient(100deg,#fde8e7,#f5c9c7)!important;color:#642321!important}
+.tv-project-info p,.tv-appointment-info p,.tv-project-info small{color:inherit!important}
+.tv-appointment-card{background:linear-gradient(110deg,#edf3fa,#dce7f3)!important;color:#23384d!important}
+.tv-date-block{background:rgba(255,255,255,.72)!important}
+.tv-date-block strong{color:#23384d!important}
+.tv-date-block span{color:#526579!important}
+.tv-time{color:#805d10!important}
+.tv-days,.tv-status{background:rgba(255,255,255,.55)!important;border-color:rgba(50,60,70,.18)!important;color:inherit!important}
 
 </style>
 </head>
